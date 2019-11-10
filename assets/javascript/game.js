@@ -9,48 +9,39 @@ var words =[
     "hockey"
 ] ;
 
-// pick a random word from the words array
-var word = words[Math.floor(Math.random()*words.length)];
 
-//set up the answer array to show how many letters are using underscores (_)
-var answer [];
-for (var i = 0; i < words.length; i++) {
-    answer[i] = "_";
+var randNum = Math.floor(Math.random()*words.length);
+var chosenWord = word[randNum];
+var rightWord=[];
+var wrongWord=[];
+var underScore=[];
+
+var docUndersCore = document.getElementsByClassName('underscores');
+
+var generateUnderScore=() => {
+for (var i = 0; i < chosenWord.length; i++) {
+    underScore.push("_");
+   
 }
-
-// create a variable to hold the number of remaining letters
-var remainingLetters = word.length;
-
-//               The Main Game Loop
-
-while (remainingLetters > 0) {
-    alert (answer.join(" "));
-
-    var guess = prompt("Guess a letter,or click Cancel to stop playing")
-    
-    if (guess == null) {
-        break;
-
-    else if (guess.length !== 1) {
-
-        alert("Please enter a single letter.")
-
-    else {
-        for (var j = 0, j < word.length; j++) {
-            if (word[j] === guess) {
-                
-                answer[j] = guess;
-
-                remainingLetters--;
-
-            }
-        }
-    }
-    //         End Of Game Loop
-
-    alert (answerArray.join(" "));
-
-    alert("Great! The answer was" + word) ;
-    }
-    }
+return underScore;
 }
+console.log(generateUnderscore());
+
+document.addEventListener('keypress', (event) => {
+    var keyword = String.fromCharCode(event.keycode);
+    if(chosenWord.indexOf(keyword) > -1) {
+        rightWord.push(keyword);
+        underScore[chosenWord.indexOf(keyword)]=keyword;
+        docUndersCore[o].innerHTML = underScore.join('');
+        docRightGuess[0].innerHTML = rightWord;
+
+     if (underScore.join('')==chosenWord)  {
+         alert('You Win');
+     } 
+    }
+     else {
+         wrongWord.push(keyword);
+         wrongGuess[0].innerHTML = wrongWord;
+     }
+       
+       docUnderscore[0].innerHTML = generateUnderScore().join(' ');
